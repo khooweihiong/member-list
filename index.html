@@ -6,31 +6,55 @@
     <link rel="stylesheet" href="src/styles.css" type="text/css" />
 </head>
 <body ng-app="app.memberList">
-    <div id="form">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" placeholder="ST Dev KL" name="name">
+    <div ng-controller="MemberController">
+        <div id="form">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" placeholder="ST Dev KL" id="name" data-ng-model="member.name">
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" placeholder="user@domain.com" id="email" data-ng-model="member.email">
+            </div>
+            <div>
+                <label for="tel">Telephone:</label>
+                <input type="tel" placeholder="" id="tel" data-ng-model="member.tel">
+            </div>
+            <div>
+                <button type="button" name="submit" data-ng-click="submit()">Submit</button>
+            </div>
         </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" placeholder="user@domain.com" name="email">
+        
+<!--
+        <div id="member-list">
+            <div id="member-list-header">
+                <div>ID</div>
+                <div>Name</div>
+                <div>Telephone</div>
+                <div>Date Added</div>
+            </div>
         </div>
-        <div>
-            <label for="tel">Telephone:</label>
-            <input type="tel" placeholder="" name="tel">
-        </div>
-        <div>
-            <button type="button" name="submit">Submit</button>
-        </div>
-    </div>
-    <div id="member-list">
-        <div id="member-list-header">
-            <div>ID</div>
-            <div>Name</div>
-            <div>Telephone</div>
-            <div>Date Added</div>
-        </div>
+-->
+        
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Telephone</td>
+                <td>Date Added</td>
+                <td>Action</td>
+            </tr>
+            <tr ng-repeat="m in memberlist track by $index">
+                <td>{{ m.id }}</td>
+                <td>{{ m.name }}</td>
+                <td>{{ m.tel }}</td>
+                <td>{{ m.date }} {{m.time}}</td>
+                <td><button type="button" name="delete" data-ng-click="remove(m.id)">DELETE</button></td>
+            </tr>
+        </table>
+
     </div>
     <script src="bower_components/angular/angular.min.js" type="application/javascript"></script>
+    <script src="bower_components/lodash/lodash.min.js" type="application/javascript"></script>
     <script src="src/script.js" type="application/javascript"></script>
 </body>
